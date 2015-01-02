@@ -19,7 +19,7 @@ class Hq::PartnersController < ApplicationController
 
   private
   def load_partner
-    @partner ||= Partner.find(params[:id])
+    @partner = Partner.find(params[:id])
   end
 
   def load_associations
