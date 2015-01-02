@@ -17,7 +17,7 @@ class Hq::PartnersController < ApplicationController
     save_partner or render 'edit'
   end
 
-  private
+private
   def load_partner
     @partner = Partner.find(params[:id])
   end
