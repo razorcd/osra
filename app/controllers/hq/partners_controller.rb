@@ -13,6 +13,7 @@ class Hq::PartnersController < ApplicationController
 
   def update
     load_partner
+    load_associations
     build_partner
     save_partner or render 'edit'
   end
