@@ -12,7 +12,7 @@ Osra::Application.routes.draw do
     end
     resources :users, except: [:destroy]
     resources :sponsors, except: [:destroy]
-    resources :orphans, except: [:destroy]
+    resources :orphans, except: [:new, :create, :destroy]
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
