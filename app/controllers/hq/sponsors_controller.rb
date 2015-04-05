@@ -4,7 +4,7 @@ class Hq::SponsorsController < HqController
   end
 
   def show
-    @sponsor = Sponsor.find(params[:id])
+    load_sponsor
   end
 
   def new

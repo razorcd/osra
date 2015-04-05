@@ -7,7 +7,7 @@ RSpec.describe Hq::UsersController, type: :controller do
     @user = build_stubbed :user
   end
 
-  it '#index' do
+  specify '#index' do
     expect(User).to receive(:all).and_return(@user)
     get :index
     expect(response).to render_template 'index'
@@ -16,6 +16,7 @@ RSpec.describe Hq::UsersController, type: :controller do
   specify '#show' do
     expect(User).to receive(:find).with('42').and_return(@user)
     get :show, id: 42
+    expect(assigns(:user)).to eq @user
     expect(response).to render_template 'show'
   end
 
@@ -23,7 +24,7 @@ RSpec.describe Hq::UsersController, type: :controller do
     before :each do
       @old_user = FactoryGirl.build_stubbed(:user)
       expect(User).to receive(:find).and_return(@old_user)
-    end    
+    end
 
     specify 'editing renders the edit view' do
       get :edit, id: @old_user.id
@@ -47,7 +48,7 @@ RSpec.describe Hq::UsersController, type: :controller do
   end
 
   describe '#new' do
-    
+
     before :each do
       @new_user = User.new
       allow(User).to receive(:new).and_return(@new_user)
