@@ -23,7 +23,7 @@ role :db,  %w{deploy@188.166.56.97}
 
 set :stage, :production
 set :deploy_to, '/home/deploy/osra/production'
-set :branch, 'capistrano-unicorn'
+set :branch, 'capistrano_unicorn'
 
 # Configuration
 # =============
