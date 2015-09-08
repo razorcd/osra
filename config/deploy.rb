@@ -1,9 +1,13 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
+app_path = "/home/deploy/osra/production"
+working_directory = "#{app_path}/current"
+
 set :application, 'OSRA-razorcd'
 set :repo_url, 'git@github.com:razorcd/osra.git'
 set :rvm_ruby_version, '2.2.0'
+set :unicorn_config_path, "#{app_path}/current/config/deploy/production.rb"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

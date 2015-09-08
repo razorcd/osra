@@ -22,6 +22,7 @@ role :web, %w{deploy@188.166.56.97}, other_property: :other_value
 role :db,  %w{deploy@188.166.56.97}
 
 set :stage, :production
+set :rails_env, "production"
 set :deploy_to, '/home/deploy/osra/production'
 set :branch, 'capistrano_unicorn'
 
