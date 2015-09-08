@@ -53,5 +53,13 @@ end
 
 group :production do
   gem 'rails_12factor', '~> 0.0.3' # required to run the app on Heroku
-  gem 'passenger', '~> 4.0.59' # web server
+  # gem 'passenger', '~> 4.0.59' # web server
+  gem 'unicorn', '~> 4.9.0'
+end
+
+group :development do
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails', '~> 1.1.2'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano3-unicorn'
 end
