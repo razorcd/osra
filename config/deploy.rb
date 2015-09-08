@@ -9,7 +9,7 @@
 # set :rails_env, "production"
 set :application, 'OSRA-razorcd'
 set :repo_url, 'git@github.com:razorcd/osra.git'
-# set :rvm_ruby_version, '2.2.0'
+
 # set :user, "deploy"
 # set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_binstubs, nil

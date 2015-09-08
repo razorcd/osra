@@ -12,7 +12,7 @@ require 'capistrano/rails/assets'
 require 'capistrano/rvm'
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby 2.2.0'
-set :pty, 'false'
+set :pty, 'true'
 
 
 # Include tasks from other gems included in your Gemfile
