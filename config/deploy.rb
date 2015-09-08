@@ -9,7 +9,7 @@ set :application, 'OSRA-razorcd'
 set :repo_url, 'git@github.com:razorcd/osra.git'
 set :rvm_ruby_version, '2.2.0'
 set :user, "deploy"
-
+set :bundle_binstubs, -> { shared_path.join('bin') }
 
 
 
@@ -49,9 +49,16 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
-  desc 'Restart Unicorn'
+  # desc 'Restart Unicorn'
+  # task :restart do
+  #   invoke 'unicorn:restart'
+  # end
+
+  desc 'Restart application'
   task :restart do
-    invoke 'unicorn:restart'
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
 
   desc 'Exec on server'
