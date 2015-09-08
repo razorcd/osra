@@ -1,9 +1,9 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-app_path = "/home/deploy/osra/production"
-working_directory "#{app_path}/current"
-pid "#{app_path}/current/tmp/pids/unicorn.pid"
+# app_path = "/home/deploy/osra/production"
+# working_directory "#{app_path}/current"
+# pid "#{app_path}/current/tmp/pids/unicorn.pid"
 
 set :application, 'OSRA-razorcd'
 set :repo_url, 'git@github.com:razorcd/osra.git'

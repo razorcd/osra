@@ -3,9 +3,14 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
+set :stage, :production
+set :rails_env, "production"
+set :deploy_to, '/home/deploy/osra/production'
+set :branch, 'capistrano_unicorn'
+
 # server '188.166.56.97', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 server '188.166.56.97', user: 'deploy', roles: %w{app web}, other_property: :other_value
-server '188.166.56.97', user: 'deploy', roles: %w{db}
+# server '188.166.56.97', user: 'deploy', roles: %w{db}
 
 
 
@@ -19,12 +24,8 @@ server '188.166.56.97', user: 'deploy', roles: %w{db}
 
 role :app, %w{deploy@188.166.56.97}, my_property: :my_value
 role :web, %w{deploy@188.166.56.97}, other_property: :other_value
-role :db,  %w{deploy@188.166.56.97}
+# role :db,  %w{deploy@188.166.56.97}
 
-set :stage, :production
-set :rails_env, "production"
-set :deploy_to, '/home/deploy/osra/production'
-set :branch, 'capistrano_unicorn'
 # set :unicorn_config_path, "/home/deploy/osra/production/current/config/deploy/production.rb"
 
 # Configuration
