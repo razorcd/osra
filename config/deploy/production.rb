@@ -25,6 +25,7 @@ set :stage, :production
 set :rails_env, "production"
 set :deploy_to, '/home/deploy/osra/production'
 set :branch, 'capistrano_unicorn'
+# set :unicorn_config_path, "/home/deploy/osra/production/current/config/deploy/production.rb"
 
 # Configuration
 # =============

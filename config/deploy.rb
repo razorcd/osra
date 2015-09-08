@@ -2,12 +2,17 @@
 lock '3.4.0'
 
 app_path = "/home/deploy/osra/production"
-working_directory = "#{app_path}/current"
+working_directory "#{app_path}/current"
+pid "#{app_path}/current/tmp/pids/unicorn.pid"
 
 set :application, 'OSRA-razorcd'
 set :repo_url, 'git@github.com:razorcd/osra.git'
 set :rvm_ruby_version, '2.2.0'
 set :user, "deploy"
+
+
+
+
 # set :unicorn_config_path, "#{app_path}/current/config/deploy/production.rb"
 
 # Default branch is :master
@@ -41,10 +46,11 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # set :keep_releases, 5
 
 
+# after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
   desc 'Restart Unicorn'
-  task :restart_unicorn do
+  task :restart do
     invoke 'unicorn:restart'
   end
 
@@ -56,14 +62,13 @@ namespace :deploy do
   end
 
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
+  # after :restart, :clear_cache do
+  #   on roles(:web), in: :groups, limit: 3, wait: 10 do
+  #     # Here we can do anything such as:
+  #     # within release_path do
+  #     #   execute :rake, 'cache:clear'
+  #     # end
+  #   end
+  # end
 
-  after :publishing, :restart_unicorn
 end
