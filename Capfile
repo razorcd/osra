@@ -3,10 +3,17 @@ require 'capistrano/setup'
 
 # Include default deployment tasks
 require 'capistrano/deploy'
-require 'capistrano/rails'
+require 'capistrano3/unicorn'
 require 'capistrano/bundler'
+require 'capistrano/rails'
+require 'capistrano/rails/assets'
+
+
 require 'capistrano/rvm'
-# require 'capistrano3/unicorn'
+set :rvm_type, :user
+set :rvm_ruby_version, 'ruby 2.2.0'
+set :pty, 'false'
+
 
 # Include tasks from other gems included in your Gemfile
 #

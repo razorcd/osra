@@ -1,15 +1,30 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+# lock '3.4.0'
 
 # app_path = "/home/deploy/osra/production"
 # working_directory "#{app_path}/current"
 # pid "#{app_path}/current/tmp/pids/unicorn.pid"
 
+# set :stage, :production
+# set :rails_env, "production"
 set :application, 'OSRA-razorcd'
 set :repo_url, 'git@github.com:razorcd/osra.git'
-set :rvm_ruby_version, '2.2.0'
-set :user, "deploy"
-set :bundle_binstubs, -> { shared_path.join('bin') }
+# set :rvm_ruby_version, '2.2.0'
+# set :user, "deploy"
+# set :bundle_binstubs, -> { shared_path.join('bin') }
+set :bundle_binstubs, nil
+
+
+
+
+# APP_PATH = "/home/deploy/osra/production"
+# working_directory "#{APP_PATH}/current"
+
+# stderr_path APP_PATH + "/log/unicorn.stderr.log"
+# stdout_path APP_PATH + "/log/unicorn.stderr.log"
+
+# pid "#{APP_PATH}/shared/tmp/pids/unicorn.pid"
+
 
 
 
@@ -56,15 +71,13 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
+    invoke 'unicorn:restart'
   end
 
   desc 'Exec on server'
   task :exec do
     on roles(:web) do
-      execute "bundle exec gem install unicorn"
+      execute "rvm gemdir"
     end
   end
 
