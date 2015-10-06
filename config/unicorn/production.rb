@@ -20,11 +20,11 @@ before_fork do |server, worker|
 
   # Before forking, kill the master process that belongs to the .oldbin PID.
   # This enables 0 downtime deploys.
-  puts; puts; puts; puts; puts
-  puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-  puts; puts; puts; puts; puts
-  binding.pry
-  puts
+  # puts; puts; puts; puts; puts
+  # puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  # puts; puts; puts; puts; puts
+  # binding.pry
+  # puts
 
   old_pid = "#{server.config[:pid]}.oldbin"
   if File.exists?(old_pid) && server.pid != old_pid

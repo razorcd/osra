@@ -8,7 +8,7 @@ set :deploy_to, '/home/deploy/osra/production'
 set :branch, 'capistrano_unicorn'
 
 # server '188.166.56.97', user: 'deploy', roles: %w{app db web}, my_property: :my_value
-server '188.166.56.97', user: 'deploy', roles: %w{app web}
+server '54.165.109.13', user: 'deploy', roles: %w{app web}
 # server '188.166.56.97', user: 'deploy', roles: %w{db}
 
 
@@ -21,9 +21,9 @@ server '188.166.56.97', user: 'deploy', roles: %w{app web}
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-role :app, %w{deploy@188.166.56.97}
-role :web, %w{deploy@188.166.56.97}
-role :db,  %w{deploy@188.166.56.97}
+role :app, %w{deploy@54.165.109.13}
+role :web, %w{deploy@54.165.109.13}
+role :db,  %w{deploy@54.165.109.13}
 
 # set :unicorn_config_path, "/home/deploy/osra/production/current/config/deploy/production.rb"
 

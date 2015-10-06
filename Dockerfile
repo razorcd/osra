@@ -10,6 +10,8 @@ FROM ubuntu:14.04
 #add your ssh key to server
 ssh-copy-id deploy@188.166.56.97
 
+add your ~/.ssh/id_rsa.pub to VM: ~/.ssh/authorised_keys
+
 #set locales
 sudo echo LC_ALL="en_US.UTF-8" >> /etc/environment
 sudo locale-gen en_US en_US.UTF-8
@@ -94,10 +96,20 @@ sudo apt-get install -y postgresql-9.3 libpq-dev
 # sudo pg_createcluster 9.3 main
 # sudo service postgresql restart
 
-sudo su - postgres
-createuser --pwprompt
-createuser deploy --pwprompt
-exit
+
+# for `No PostgreSQL clusters exist` error:
+sudo nano /etc/environment   and add: LC_ALL="en_US.utf-8"
+sudo reboot
+sudo dpkg-reconfigure locales
+sudo pg_createcluster 9.3 main --start
+sudo service postgresql restart
+
+
+sudo passwd postgres
+#sudo su - postgres
+#createuser --pwprompt
+#createuser deploy --pwprompt
+#exit
 
 
 #create DB
@@ -112,7 +124,7 @@ local   all             postgres                                peer
 to
 local   all             postgres                                trust
 in '/confing/database.yml' add password or   <%= ENV["MYSQL_DB_PASSWORD"] %>
-
+sudo service postgresql restart
 
 #copy repo
 git clone <repo>
