@@ -57,7 +57,7 @@ production:
   database: osra_production
   pool: 5
   username: postgres
-  password:
+  password: password
 
 cucumber:
   <<: *test
