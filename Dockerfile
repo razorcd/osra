@@ -15,6 +15,7 @@ add your ~/.ssh/id_rsa.pub to VM: ~/.ssh/authorised_keys
 #set locales
 sudo echo LC_ALL="en_US.UTF-8" >> /etc/environment
 sudo locale-gen en_US en_US.UTF-8
+reboot
 sudo dpkg-reconfigure locales
 
 
@@ -166,6 +167,7 @@ ssh-keygen -t rsa
 
 #dependencies
 sudo apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+sudo apt-get install libgmp-dev
 
 #install ruby with rvm
 sudo apt-get -y install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
