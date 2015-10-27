@@ -7,7 +7,7 @@ Feature:
     So that I may maintain the information about osra partners
     I would like to be able to create, read and update partners in the admin section
 =end
-RSpec.feature 'CRUD Partner', :type => :feature do
+RSpec.feature 'Partner', :type => :feature do
 
   background do
     given_partners_exist [ { name: 'Partner1', region: 'Region1', status: 'Active', province: 'Damascus & Rif Dimashq', contact_details: 12345, start_date: '2013-09-25' },
@@ -96,20 +96,6 @@ RSpec.feature 'CRUD Partner', :type => :feature do
     click_link 'Cancel'
     and_i_should_be_on :hq_partner_page, { partner_name: 'Partner1' }
     and_i_should_not_see 'New Region'
-  end
-
-  def given_partners_exist table
-    table.each do |hash|
-      status = Status.find_by_name(hash[:status])
-      province = Province.find_by_name(hash[:province])
-      partner = Partner.new(name: hash[:name],
-                            region: hash[:region],
-                            start_date: hash[:start_date],
-                            contact_details: hash[:contact_details],
-                            province: province,
-                            status: status)
-      partner.save!
-    end
   end
 
   def i_should_see_the_following_codes_for_partners table
